@@ -1,3 +1,15 @@
+docker-build:
+	@echo "Running docker build..."
+	docker build -t afifvdin/learn-fastapi .
+
+docker-build-platform:
+	@echo "Running docker build (platform)..."
+	docker build --platform linux/amd64 -t afifvdin/learn-fastapi .
+
+docker run:
+	@echo "Running through docker..."
+	docker run -p 8000:8000 --name myapp -d afifvdin/learn-fastapi
+
 init-db:
 	@echo "Running database initialization..."
 	uv run alembic run init alembic

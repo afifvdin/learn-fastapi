@@ -10,6 +10,8 @@ from app.database import Note  # noqa
 
 load_dotenv(override=True)
 
+os.makedirs("data", exist_ok=True)
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -20,7 +22,7 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 config.set_main_option(
-    "sqlalchemy.url", os.environ.get("DATABASE_URL", "sqlite:///./dev.db")
+    "sqlalchemy.url", os.environ.get("DATABASE_URL", "sqlite:///./data/dev.db")
 )
 
 # add your model's MetaData object here
