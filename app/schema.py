@@ -1,15 +1,11 @@
 from pydantic import BaseModel
 
 
-class User(BaseModel):
-    name: str
-    email: str
-    password: str
+class NoteCreate(BaseModel):
+    title: str
+    content: str
 
 
-class Product(BaseModel):
+class NoteRead(BaseModel):
     id: int
-    name: str
-    price: float
-    description: str
-    category: str | None = None
+    title: str
