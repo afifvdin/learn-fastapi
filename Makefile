@@ -1,5 +1,6 @@
 format:
 	@echo "Formatting..."
+	uv run isort . --profile black
 	uv run ruff format
 	uv run ruff check --fix
 

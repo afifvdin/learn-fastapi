@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from scalar_fastapi import get_scalar_api_reference
+from app.routes.products import product_router
+
 from app.settings import settings
-from app.schema import User
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -10,15 +11,7 @@ app = FastAPI(
     redoc_url=settings.REDOC_URL,
 )
 
-
-@app.get("/")
-def hello():
-    return {"message": "Hei mom!"}
-
-
-@app.post("/user")
-def create_user(user: User):
-    return user
+app.include_router(product_router)
 
 
 @app.get("/scalar", include_in_schema=False)
