@@ -13,7 +13,7 @@ app.include_router(users_router)
 
 @app.get("/")
 def hello_world():
-    return {"message": "Hei, Mom!"}
+    return {"message": "Hei mom, i'll show you the world!"}
 
 
 @app.get("/scalar", include_in_schema=False)
