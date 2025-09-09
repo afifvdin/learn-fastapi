@@ -11,6 +11,6 @@ echo "Building new images..."
 docker compose -f docker-compose.prod.yaml build
 
 echo "Deploying with rolling update..."
-docker compose -f docker-compose.prod.yaml up -d --no-deps build
+docker compose -f docker-compose.prod.yaml up -d --no-deps --build
 
 echo "Deployment successful"
