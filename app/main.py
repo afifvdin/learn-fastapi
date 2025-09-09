@@ -14,7 +14,7 @@ app.get("/")
 
 
 def hello_world():
-    return {"message": "Hello, world!"}
+    return {"message": "Hei, Mom!"}
 
 
 @app.get("/scalar", include_in_schema=False)
