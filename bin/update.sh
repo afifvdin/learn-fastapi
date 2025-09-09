@@ -2,7 +2,7 @@
 
 set -e
 
-cd /home/idch-afifvdin/app
+cd $HOME/idch-afifvdin/app
 echo "Updating code..."
 git fetch origin
 git reset --hard origin/main
