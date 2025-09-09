@@ -10,9 +10,8 @@ app = FastAPI(
 
 app.include_router(users_router)
 
-app.get("/")
 
-
+@app.get("/")
 def hello_world():
     return {"message": "Hei, Mom!"}
 
