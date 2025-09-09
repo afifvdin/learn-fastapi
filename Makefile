@@ -1,39 +1,47 @@
-docker-build:
-	@echo "Running docker build..."
-	docker build -t afifvdin/learn-fastapi .
+prod-docker-up:
+	@echo "(prod) Up docker..."
+	docker compose -f docker-compose.prod.yaml up -d
 
-docker-build-platform:
-	@echo "Running docker build (platform)..."
-	docker build --platform linux/amd64 -t afifvdin/learn-fastapi .
+prod-docker-down:
+	@echo "(prod) Down docker..."
+	docker compose -f docker-compose.prod.yaml down
 
-docker run:
-	@echo "Running through docker..."
-	docker run -p 8000:8000 --name myapp -d afifvdin/learn-fastapi
+prod-docker-build:
+	@echo "(prod) Running docker build..."
+	docker compose -f docker-compose.prod.yaml build
 
-init-db:
+dev-docker-up:
+	@echo "(dev) Up docker..."
+	docker compose -f docker-compose.dev.yaml up -d
+
+dev-docker-down:
+	@echo "(dev) Down docker..."
+	docker compose -f docker-compose.dev.yaml down
+
+dev-db-init:
 	@echo "Running database initialization..."
-	uv run alembic run init alembic
+	uv run alembic init alembic
 
-db-generate:
+dev-db-generate:
 	@echo "Running migration ($m)..."
 	uv run alembic revision --autogenerate -m "$m"
 
-db-peek:
+dev-db-peek:
 	@echo "Peeking head migration..."
 	uv run alembic upgrade head --sql
 
-db-up:
+dev-db-up:
 	@echo "Upgrade migration..."
 	uv run alembic upgrade head
 
-db-down:
+dev-db-down:
 	@echo "Downgrade migration..."
 	uv run alembic upgrade head
 
 format:
 	@echo "Formatting..."
-	uv run ruff format
-	uv run ruff check --fix
+	uv run ruff format .
+	uv run ruff check . --fix
 
 dev: format
 	@echo "Running app on localhost:8000..."

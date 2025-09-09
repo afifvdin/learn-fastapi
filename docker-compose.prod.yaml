@@ -1,0 +1,37 @@
+services:
+  app:
+    build: .
+    container_name: app
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    env_file:
+      - .env
+  db:
+    image: postgres:latest
+    container_name: db
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DB}
+    env_file:
+      - .env
+    ports:
+      - 5431:5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  pg_admin:
+    image: dpage/pgadmin4
+    container_name: pg_admin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=password
+    ports:
+      - 5430:80
+    depends_on:
+      - db
+
+volumes:
+  pg_data:
