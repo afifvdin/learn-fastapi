@@ -10,6 +10,12 @@ app = FastAPI(
 
 app.include_router(users_router)
 
+app.get("/")
+
+
+def hello_world():
+    return {"message": "Hello, world!"}
+
 
 @app.get("/scalar", include_in_schema=False)
 async def scalar_html():
