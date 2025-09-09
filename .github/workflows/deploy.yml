@@ -21,5 +21,5 @@ jobs:
           key: ${{secrets.SSH_PRIVATE_KEY}}
           port: ${{secrets.SSH_PORT || 22}}
           script:
-            cd $HOME/idch-afifvdin/app/bin
+            cd /home/idch-afifvdin/app/bin
             ./update.sh
