@@ -18,6 +18,10 @@ dev-docker-down:
 	@echo "(dev) Down docker..."
 	docker compose -f docker-compose.dev.yaml down
 
+dev-docker-build:
+	@echo "(dev) Running docker build..."
+	docker compose -f docker-compose.dev.yaml build
+
 dev-db-init:
 	@echo "Running database initialization..."
 	uv run alembic init alembic
@@ -46,3 +50,6 @@ format:
 dev: format
 	@echo "Running app on localhost:8000..."
 	uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+celery:
+	uv run celery -A app.celery_app worker -c 4 -l info

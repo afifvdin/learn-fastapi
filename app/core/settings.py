@@ -16,6 +16,14 @@ class Settings(BaseSettings):
 
     DB_CONNECTION_STR: str | None = None
 
+    JWT_SECRET: str = "your-not-very-safe-secret"
+    JWT_ALGORITHM: str = "HS256"
+    JWT_TOKEN_EXPIRES: int = 60  # minutes
+
+    GOOGLE_CLIENT_ID: str = ""
+    GOOGLE_CLIENT_SECRET: str = ""
+    GOOGLE_REDIRECT_URL: str = "http://localhost:8000/auth/callback/google"
+
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     def __init__(self, **kwargs):  # type: ignore
